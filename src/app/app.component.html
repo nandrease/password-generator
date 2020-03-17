@@ -1,25 +1,42 @@
 
-<h1>Password generator</h1>
-<div>
-  <label for="pwlength">Enter Length</label>
-  <input type="text" id="pwlength">
-</div>
-<div>
-  <label for="useletters">Use Letters</label>
-  <input type="checkbox" id="useletters">
-</div>
-<div>
-  <label for="usenumbers">Use Numbers</label>
-  <input type="checkbox" id="usenumbers">
-</div>
-<div>
-  <label for="usesymbols">Use Sybols</label>
-  <input type="checkbox" id="usesymbols">
-</div>
-<div>
-  <button>Generate!</button>
-</div>
-<div>
-  <label for="yourpw">Your Passowrd</label>
-  <input type="text" id="yourpw">
+<div class="container">
+  <div class="columns is-centered">
+    <div class="box column is-one-third">
+      <h1 class="title has-text-centered">Password generator</h1>
+      <div class="field">
+        <label class="label" for="pwlength">Enter Length</label>
+        <input class="input" type="text" id="pwlength" (input)="onChangeLength($event.target.value)">
+      </div>
+      <div class="field">
+        <label>
+          <input class="checkbox" type="checkbox" id="useletters" (change)="onChangeUseLetters()">
+          Use Letters
+        </label>
+      </div>
+      <div class="field">
+        <label for="usenumbers">
+          <input class="checkbox" type="checkbox" id="usenumbers" (change)="onChangeUseNumbers()">
+          Use Numbers
+      </label>
+      </div>
+      <div class="field">
+        <label for="usesymbols">
+          <input class="checkbox" type="checkbox" id="usesymbols" (change)="onChangeUseSymbols()">
+          Use Sybols
+        </label>
+      </div>
+      <div class="field">
+        <button 
+          class="button is-link"  
+          (click)="onButtonClick()" 
+          [disabled]="!(length && (includeLetters || includeNumbers || includeSymbols ))"
+        >Generate!</button>
+      </div>
+      <hr>
+      <div class="box" *ngIf="password">
+        <label class="label" for="yourpw">Your Passowrd</label>
+        <input class="input" type="text" id="yourpw" [value]="password" >
+      </div>
+    </div>
+  </div>
 </div>
